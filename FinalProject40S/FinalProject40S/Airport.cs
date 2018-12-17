@@ -7,9 +7,9 @@ namespace FinalProject40S
 {
     public class Airport
     {
-        public Aircraft Aircraft
+        public Aircraft[] Aircraft
         {
-            get => default(Aircraft);
+            get => default(Aircraft[]);
             set
             {
             }
@@ -21,6 +21,11 @@ namespace FinalProject40S
             set
             {
             }
+        }
+
+        public Airport()
+        {
+
         }
     }
 }

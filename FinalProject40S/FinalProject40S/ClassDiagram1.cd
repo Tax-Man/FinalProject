@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="FinalProject40S.Type1">
-    <Position X="4.75" Y="1.25" Width="1.5" />
+    <Position X="5.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Type1.cs</FileName>
@@ -9,21 +9,21 @@
     <Lollipop Orientation="Right" Position="0.414" />
   </Class>
   <Class Name="FinalProject40S.Type2">
-    <Position X="4.75" Y="2.25" Width="1.5" />
+    <Position X="5.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Type2.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FinalProject40S.Type3">
-    <Position X="4.75" Y="3.25" Width="1.5" />
+    <Position X="5.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Type3.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FinalProject40S.Aircraft">
-    <Position X="1.5" Y="2.25" Width="1.5" />
+    <Position X="2.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Aircraft.cs</FileName>
@@ -38,6 +38,13 @@
     <ShowAsAssociation>
       <Property Name="Aircraft" />
     </ShowAsAssociation>
+  </Class>
+  <Class Name="FinalProject40S.Path">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwLoEEAAgAQAiQBEMEgAFAEAEgAggQAAAAAACABQAwA=</HashCode>
+      <FileName>Path.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Interface Name="FinalProject40S.Military" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
