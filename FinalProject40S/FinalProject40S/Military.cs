@@ -7,5 +7,6 @@ namespace FinalProject40S
 {
     public interface Military
     {
+       void OverrideFCT();
     }
 }
