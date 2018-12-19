@@ -2,6 +2,13 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="FinalProject40S.Type1">
     <Position X="5.75" Y="1.25" Width="1.5" />
+    <InheritanceLine Type="FinalProject40S.Aircraft" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="3.562" Y="2.25" />
+        <Point X="3.562" Y="1.749" />
+        <Point X="5.75" Y="1.749" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Type1.cs</FileName>
@@ -25,12 +32,12 @@
   <Class Name="FinalProject40S.Aircraft">
     <Position X="2.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAgAAIAACAAAAAAgAAAAAAAAAIAAAA=</HashCode>
+      <HashCode>AAAAAAgAAAAAgAAgAAIAACAAAAAAgAAAAAAAAAIAAAA=</HashCode>
       <FileName>Aircraft.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FinalProject40S.Airport">
-    <Position X="0.5" Y="4.25" Width="1.5" />
+    <Position X="2.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Airport.cs</FileName>
@@ -39,14 +46,18 @@
       <Property Name="Aircraft" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="FinalProject40S.Path">
-    <Position X="0.5" Y="1.25" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
+  <Class Name="FinalProject40S.Path" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AwLoEEAAAAQAiYBEMEAAFAEAEAAAiAAAAQACCABQAAA=</HashCode>
       <FileName>Path.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FinalProject40S.List">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwLoEEAAACQCiIBEsEAAFAEAEAAAiQIAIQACCABQABA=</HashCode>
+      <FileName>List.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="FinalProject40S.Military">

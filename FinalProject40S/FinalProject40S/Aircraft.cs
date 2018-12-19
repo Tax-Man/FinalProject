@@ -36,5 +36,13 @@ namespace FinalProject40S
             ID = null;
             next = previous = null;
         }
+
+        //publisher event for leaving screen
+        public void LeaveEvent()
+        {
+
+        }
+
+
     }
 }
