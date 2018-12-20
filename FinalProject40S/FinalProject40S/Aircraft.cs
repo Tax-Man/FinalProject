@@ -15,6 +15,7 @@ namespace FinalProject40S
             get => Target;
             set => Target = value;
         }
+        public string Code;
 
         public string ID
         {
@@ -28,6 +29,20 @@ namespace FinalProject40S
             set => Position = value;
         }
 
+        public int MaxSpeed
+        {
+            get => MaxSpeed;
+            set => MaxSpeed = value;
+        }
+
+        public int MaxAltitude
+        {
+            get => MaxAltitude;
+            set => MaxAltitude = value;
+        }
+
+
+
         /// <summary>
         /// Wipes out all memory used by this object
         /// </summary>
@@ -37,12 +52,13 @@ namespace FinalProject40S
             next = previous = null;
         }
 
-        //publisher event for leaving screen
+        /// <summary>
+        /// publisher event for leaving screen
+        /// </summary>
         public void LeaveEvent()
         {
 
         }
-
-
+        
     }
 }

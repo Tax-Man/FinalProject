@@ -9,23 +9,34 @@ namespace FinalProject40S
     {
         public Aircraft[] Aircraft
         {
-            get => default(Aircraft[]);
-            set
-            {
-            }
+            get => Aircraft;
+            set => Aircraft = value;
         }
 
         public int Capacity
         {
-            get => default(int);
-            set
-            {
-            }
+            get => Capacity;
+            set => Capacity = value;
+        }
+        
+        public Airport(int capacity)
+        {
+            Capacity = capacity;
+            Aircraft = new Aircraft[Capacity];
         }
 
-        public Airport()
+        public bool Add(Aircraft aircraft)
         {
-
+            for (int i = 0; i <= Capacity; i++)
+            {
+                if (i == Capacity) return false;
+                if (Aircraft[i] == null)
+                {
+                    Aircraft[i] = aircraft;
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
