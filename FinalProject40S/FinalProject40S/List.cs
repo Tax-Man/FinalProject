@@ -5,7 +5,7 @@ namespace FinalProject40S
 {
 
     /// <summary>
-    /// Abstract ID type
+    /// Abstract data type
     /// </summary>
     /// <typeparam name="string">The generic data type used in the class</typeparam>
     class List
@@ -13,7 +13,12 @@ namespace FinalProject40S
         private int length;
         
         public const int NOT_FOUND = -1;
-        
+        public const int ID = 0;
+        public const int POSITION = 1;
+        public const int MAX_SPEED = 2;
+        public const int MAX_ALTITUDE = 3;
+        public const int MODEL = 4;
+
         /// <summary>
         /// First Aircraft in the path
         /// </summary>
@@ -114,10 +119,8 @@ namespace FinalProject40S
             List list = new List();
             for (int i = 0; i < length; i++)
             {
-                list.Add(this.GetNode(i).ID);
+                list.Add(this.GetNode(i).Data);
             }
-
-
             return list;
         }
 
@@ -150,15 +153,15 @@ namespace FinalProject40S
         }
 
         /// <summary>
-        /// Inserts ID to the front (Head) of the list, for an (1) empty list, 
+        /// Inserts data to the front (Head) of the list, for an (1) empty list, 
         /// (2) list of 1 Aircraft, (3) list of > 1 Aircraft
         /// </summary>
-        /// <param name="ID">the ID type to add</param>
+        /// <param>the data to add</param>
         /// <returns>the operation was successful (true) or not (false)</returns>
-        public bool Add(string ID)
+        public bool Add(string ID, PointF pos, int maxSpeed, int maxAltitude, string model)
         {
-            if (ID == null) return false;
-            Aircraft aircraft = new Aircraft(ID);
+            if (ID == null || pos == null || maxAltitude == default(int) || maxSpeed == default(int)) return false;
+            Aircraft aircraft = new Aircraft(ID, pos, maxSpeed, maxAltitude, model);
             if (IsEmpty())
             {
                 Head = Tail = aircraft;
@@ -173,17 +176,41 @@ namespace FinalProject40S
             return true;
         }
         
-
         /// <summary>
-        /// Inserts ID to the front (Head) of the list, for an (1) empty list, 
+        /// Inserts data to the front (Head) of the list, for an (1) empty list, 
         /// (2) list of 1 Aircraft, (3) list of > 1 Aircraft
         /// </summary>
-        /// <param name="ID">the ID type to add</param>
+        /// <param name="data">the data to add</param>
         /// <returns>the operation was successful (true) or not (false)</returns>
-        public bool AddFront(string ID)
+        public bool Add(Data data)
         {
-            if (ID == null) return false;
-            Aircraft aircraft = new Aircraft(ID);
+            if (data == null) return false;
+            Aircraft aircraft = new Aircraft(data);
+            if (IsEmpty())
+            {
+                Head = Tail = aircraft;
+            }
+            else
+            {
+                aircraft.previous = Tail;
+                Tail.next = aircraft;
+                Tail = aircraft;
+            }
+            length++;
+            return true;
+        }
+
+
+        /// <summary>
+        /// Inserts data to the front (Head) of the list, for an (1) empty list, 
+        /// (2) list of 1 Aircraft, (3) list of > 1 Aircraft
+        /// </summary>
+        /// <param name="data">the data type to add</param>
+        /// <returns>the operation was successful (true) or not (false)</returns>
+        public bool AddFront(Data data)
+        {
+            if (data == null) return false;
+            Aircraft aircraft = new Aircraft(data);
             if (IsEmpty())
             {
                 Head = Tail = aircraft;
@@ -199,16 +226,15 @@ namespace FinalProject40S
         }
 
         /// <summary>
-        /// Accessor for the ID at the specified index
+        /// Accessor for the aircraft at the specified index
         /// </summary>
         /// <param name="index">the index location to access</param>
-        /// <returns>the ID (or null) at the index</returns>
-        public string Get(int index)
+        /// <returns>the aircraft (or null) at the index</returns>
+        public Aircraft Get(int index)
         {
             if (!InRange(index)) return null;
-            return GetNode(index).ID;
+            return GetNode(index);
         }
-
 
         private bool InRange(int index)
         {
@@ -233,37 +259,37 @@ namespace FinalProject40S
         }
 
         /// <summary>
-        /// Mutator method sets the index location to the new ID
+        /// Mutator method sets the index location to the new data
         /// </summary>
         /// <param name="index">the index location to mutate</param>
-        /// <param name="ID">the new ID to mutate into</param>
+        /// <param name="data">the new data to mutate into</param>
         /// <returns>the operation was successful (true) or not (false)</returns>
-        public bool SetNode(int index, string ID)
+        public bool SetNode(int index, Data data)
         {
             Aircraft current = GetNode(index);
 
             if (current == null) return false;
-            if (ID == null) return false;
+            if (data == null) return false;
 
-            current.ID = ID;
+            current.Data = data;
             return true;
         }
 
-        public string Front()
+        public Aircraft Front()
         {
             return Get(0);
         }
-        public string Back()
+        public Aircraft Back()
         {
             return Get(length - 1);
         }
 
-        public string RemoveFront()
+        public Aircraft RemoveFront()
         {
-            if (IsEmpty()) return default(string);
+            if (IsEmpty()) return null;
             else
             {
-                string ID = Front();
+                Aircraft aircraft = Front();
                 if (length == 1)
                 {
                     Finalize();
@@ -276,16 +302,16 @@ namespace FinalProject40S
                     length--;
                     GC.Collect();
                 }
-                return ID;
+                return aircraft;
             }
         }
 
-        public string RemoveBack()
+        public Aircraft RemoveBack()
         {
             if (IsEmpty()) return null;
             else
             {
-                string ID = Back();
+                Aircraft aircraft = Back();
                 if (length == 1)
                 {
                     Finalize();
@@ -298,35 +324,52 @@ namespace FinalProject40S
                     length--;
                     GC.Collect();
                 }
-                return ID;
+                return aircraft;
             }
         }
 
-        public bool Contains(string ID)
+        public bool Contains(Data data)
         {
             Aircraft current = Head;
             while (current != null)
             {
-                if (current.ID.Equals(ID)) return true;
+                if (current.Data.Equals(data)) return true;
                 current = current.next;
             }
             return false;
         }
 
+        public bool Contains(in ID)
+        {
+            switch ()
+
+
+
+
+
+            Aircraft current = Head;
+            while (current != null)
+            {
+                if (current.Data.ID.Equals(ID)) return true;
+                current = current.next;
+            }
+            return false;
+        }
+        
         /// <summary>
-        /// Inserts ID as a new Aircraft after the passed index
+        /// Inserts data as a new Aircraft after the passed index
         /// </summary>
-        /// <param name="ID">the ID type to insert</param>
+        /// <param name="data">the data type to insert</param>
         /// <param name="index">the index location to insert after</param>
         /// <returns>the operation was successful (true) or not (false)</returns>
-        public bool AddAfter(string ID, int index)
+        public bool AddAfter(Data data, int index)
         {
             if (!InRange(index)) return false;              // index out of range
-            if (ID == null) return false;                 // invalid ID to add
-            if (index == length - 1) return Add(ID);  // add to end of list
+            if (data == null) return false;                 // invalid data to add
+            if (index == length - 1) return Add(data);  // add to end of list
             else
             {                                               // adding into middle
-                Aircraft aircraft = new Aircraft(ID);           // create Aircraft object
+                Aircraft aircraft = new Aircraft(data);           // create Aircraft object
                 Aircraft current = GetNode(index);           // get to index spot
                 aircraft.next = current.next;                   // set proper references
                 current.next.previous = aircraft;
@@ -337,7 +380,7 @@ namespace FinalProject40S
             }
         }
 
-        public string Remove(int index)
+        public Aircraft Remove(int index)
         {
             if (!InRange(index)) return null;
             if (index == 0) return RemoveFront();
@@ -348,63 +391,64 @@ namespace FinalProject40S
             current.next = current.previous = null;
             length--;
             GC.Collect();
-            return current.ID;
+            return current;
         }
-        public int FirstIndexOf(string ID)
+
+        public int FirstIndexOf(Data data)
         {
             int index = 0;
             Aircraft current = Head;
             while (current != null)
             {
-                if (current.ID.Equals(ID)) return index;
+                if (current.Data.Equals(data)) return index;
                 index++;
                 current = current.next;
             }
             return default(int);
         }
 
-        public int LastIndexOf(string ID)
+        public int LastIndexOf(Data data)
         {
             int index = length - 1;
             Aircraft current = Tail;
             while (current != null)
             {
-                if (current.ID.Equals(ID)) return index;
+                if (current.Data.Equals(data)) return index;
                 index--;
                 current = current.previous;
             }
             return default(int);
         }
 
-        public bool Remove(string ID)
+        public bool Remove(Data data)
         {
-            if (ID == null) return false;
-            int index = FirstIndexOf(ID);
+            if (data == null) return false;
+            int index = FirstIndexOf(data);
             if (index == NOT_FOUND) return false;
             Remove(index);
             return true;
         }
 
-        public bool RemoveLast(string ID)
+        public bool RemoveLast(Data data)
         {
-            if (ID == null) return false;
-            int index = LastIndexOf(ID);
+            if (data == null) return false;
+            int index = LastIndexOf(data);
             if (index == NOT_FOUND) return false;
             Remove(index);
             return true;
         }
 
-        public void RemoveAll(string ID)
+        public void RemoveAll(Data data)
         {
-            while (Contains(ID))
+            while (Contains(data))
             {
-                Remove(ID);
+                Remove(data);
             }
         }
 
-        public void RemoveAll(string[] items)
+        public void RemoveAll(Data[] items)
         {
-            foreach (string item in items)
+            foreach (Data item in items)
             {
                 RemoveAll(item);
             }
@@ -424,21 +468,21 @@ namespace FinalProject40S
             Finalize();
         }
 
-        public int NumberOf(string ID)
+        public int NumberOf(Data data)
         {
             int counter = 0;
             Aircraft current = Head;
             while (current != null)
             {
-                if (current.ID.Equals(ID)) counter++;
+                if (current.Data.Equals(data)) counter++;
                 current = current.next;
             }
             return counter;
         }
 
-        public void AddAll(string[] items)
+        public void AddAll(Data[] items)
         {
-            foreach (string item in items)
+            foreach (Data item in items)
             {
                 Add(item);
             }
@@ -473,17 +517,17 @@ namespace FinalProject40S
             return list;
         }
 
-        public int[] AllIndices(string ID)
+        public int[] AllIndices(Data data)
         {
-            if (ID == null) return null;
-            if (!Contains(ID)) return null;
-            int size = NumberOf(ID);
+            if (data == null) return null;
+            if (!Contains(data)) return null;
+            int size = NumberOf(data);
             int[] array = new int[size];
             Aircraft current = Head;
             int counter = 0;
             for (int i = 0; i < length; i++)
             {
-                if (current.ID.Equals(ID))
+                if (current.data.Equals(data))
                 {
                     array[counter] = i;
                     counter++;

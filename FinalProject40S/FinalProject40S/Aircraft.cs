@@ -6,49 +6,46 @@ using System.Text;
 
 namespace FinalProject40S
 {
-    public abstract class Aircraft
+    public class Aircraft
     {
         public Aircraft next, previous;
 
+        public Aircraft(string ID, PointF pos, int maxSpeed, int maxAltitude, string model)
+        {
+            Data.ID = ID;
+            Data.MaxSpeed = maxSpeed;
+            Data.MaxAltitude = maxAltitude;
+            Data.Position = pos;
+            Data.Model = model;
+        }
+
+        public Aircraft(Data data)
+        {
+            Data = data;
+            if (data.ID == null)
+            {
+                //generate random ID
+            }
+        }
+        
         public PointF Target
         {
             get => Target;
             set => Target = value;
         }
-        public string Code;
 
-        public string ID
+        public Data Data
         {
-            get => ID;
-            set => ID = value;
+            get => Data;
+            set => Data = value;
         }
-
-        public PointF Position
-        {
-            get => Position;
-            set => Position = value;
-        }
-
-        public int MaxSpeed
-        {
-            get => MaxSpeed;
-            set => MaxSpeed = value;
-        }
-
-        public int MaxAltitude
-        {
-            get => MaxAltitude;
-            set => MaxAltitude = value;
-        }
-
-
 
         /// <summary>
         /// Wipes out all memory used by this object
         /// </summary>
         public void Finalize()
         {
-            ID = null;
+            Data = null;
             next = previous = null;
         }
 
@@ -59,6 +56,6 @@ namespace FinalProject40S
         {
 
         }
-        
+
     }
 }
