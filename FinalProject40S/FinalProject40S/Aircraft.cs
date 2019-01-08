@@ -9,6 +9,7 @@ namespace FinalProject40S
     public class Aircraft
     {
         public Aircraft next, previous;
+        static Random _random = new Random();
 
         public Aircraft(string ID, PointF pos, int maxSpeed, int maxAltitude, string model)
         {
@@ -24,10 +25,29 @@ namespace FinalProject40S
             Data = data;
             if (data.ID == null)
             {
-                //generate random ID
+                string newID = "";
+                newID += GetLetter();
+                newID += GetLetter();
+                newID += GetLetter();
+                newID += GetLetter();
+                newID += GetNum();
+                newID += GetNum();
+                newID += GetNum();
             }
         }
-        
+
+        public char GetLetter()
+        {
+            int num = _random.Next(0, 26);
+            char let = (char)('a' + num);
+            return let;
+        }
+
+        public int GetNum()
+        {
+            return _random.Next(0, 10);
+        }
+
         public PointF Target
         {
             get => Target;

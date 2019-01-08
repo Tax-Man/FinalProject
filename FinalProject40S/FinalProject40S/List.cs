@@ -151,30 +151,6 @@ namespace FinalProject40S
         {
             return length;
         }
-
-        /// <summary>
-        /// Inserts data to the front (Head) of the list, for an (1) empty list, 
-        /// (2) list of 1 Aircraft, (3) list of > 1 Aircraft
-        /// </summary>
-        /// <param>the data to add</param>
-        /// <returns>the operation was successful (true) or not (false)</returns>
-        public bool Add(string ID, PointF pos, int maxSpeed, int maxAltitude, string model)
-        {
-            if (ID == null || pos == null || maxAltitude == default(int) || maxSpeed == default(int)) return false;
-            Aircraft aircraft = new Aircraft(ID, pos, maxSpeed, maxAltitude, model);
-            if (IsEmpty())
-            {
-                Head = Tail = aircraft;
-            }
-            else
-            {
-                aircraft.previous = Tail;
-                Tail.next = aircraft;
-                Tail = aircraft;
-            }
-            length++;
-            return true;
-        }
         
         /// <summary>
         /// Inserts data to the front (Head) of the list, for an (1) empty list, 
@@ -205,7 +181,7 @@ namespace FinalProject40S
         /// Inserts data to the front (Head) of the list, for an (1) empty list, 
         /// (2) list of 1 Aircraft, (3) list of > 1 Aircraft
         /// </summary>
-        /// <param name="data">the data type to add</param>
+        /// <param name="data">the data to add</param>
         /// <returns>the operation was successful (true) or not (false)</returns>
         public bool AddFront(Data data)
         {
@@ -223,6 +199,52 @@ namespace FinalProject40S
             }
             length++;
             return true;
+        }
+
+        /// <summary>
+        /// Inserts data to the front (Head) of the list, for an (1) empty list, 
+        /// (2) list of 1 Aircraft, (3) list of > 1 Aircraft
+        /// </summary>
+        /// <param name="data">the data to add</param>
+        /// <returns>the operation was successful (true) or not (false)</returns>
+        public Aircraft Add(Aircraft aircraft)
+        {
+            if (aircraft == null) return null;
+            if (IsEmpty())
+            {
+                Head = Tail = aircraft;
+            }
+            else
+            {
+                aircraft.previous = Tail;
+                Tail.next = aircraft;
+                Tail = aircraft;
+            }
+            length++;
+            return null;
+        }
+
+        /// <summary>
+        /// Inserts data to the front (Head) of the list, for an (1) empty list, 
+        /// (2) list of 1 Aircraft, (3) list of > 1 Aircraft
+        /// </summary>
+        /// <param name="data">the data to add</param>
+        /// <returns>the operation was successful (true) or not (false)</returns>
+        public Aircraft AddFront(Aircraft aircraft)
+        {
+            if (aircraft == null) return null;
+            if (IsEmpty())
+            {
+                Head = Tail = aircraft;
+            }
+            else
+            {
+                aircraft.next = Head;
+                Head.previous = aircraft;
+                Head = aircraft;
+            }
+            length++;
+            return aircraft;
         }
 
         /// <summary>
@@ -339,19 +361,46 @@ namespace FinalProject40S
             return false;
         }
 
-        public bool Contains(in ID)
+        public bool Contains(Data data, int type)
         {
-            switch ()
-
-
-
-
-
             Aircraft current = Head;
-            while (current != null)
+            switch (type)
             {
-                if (current.Data.ID.Equals(ID)) return true;
-                current = current.next;
+                case ID:
+                    while (current != null)
+                    {
+                        if (current.Data.ID.Equals(data.ID)) return true;
+                        current = current.next;
+                    }
+                    break;
+                case POSITION:
+                    while (current != null)
+                    {
+                        if (current.Data.Position.Equals(data.Position)) return true;
+                        current = current.next;
+                    }
+                    break;
+                case MAX_SPEED:
+                    while (current != null)
+                    {
+                        if (current.Data.MaxSpeed.Equals(data.MaxSpeed)) return true;
+                        current = current.next;
+                    }
+                    break;
+                case MAX_ALTITUDE:
+                    while (current != null)
+                    {
+                        if (current.Data.MaxAltitude.Equals(data.MaxAltitude)) return true;
+                        current = current.next;
+                    }
+                    break;
+                case MODEL:
+                    while (current != null)
+                    {
+                        if (current.Data.Model.Equals(data.Model)) return true;
+                        current = current.next;
+                    }
+                    break;
             }
             return false;
         }
@@ -495,15 +544,7 @@ namespace FinalProject40S
                 Add(list.Get(i));
             }
         }
-
-        public void Insert(List list, int index)
-        {
-            for (int i = 0; i < list.Size(); i++)
-            {
-                AddAfter(list.Get(i), index);
-            }
-        }
-
+        
         public List SubList(int from, int to)
         {
             if (!InRange(from)) return null;
@@ -527,7 +568,7 @@ namespace FinalProject40S
             int counter = 0;
             for (int i = 0; i < length; i++)
             {
-                if (current.data.Equals(data))
+                if (current.Data.Equals(data))
                 {
                     array[counter] = i;
                     counter++;
