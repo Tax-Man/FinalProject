@@ -69,10 +69,9 @@ namespace FinalProject40S
             next = previous = null;
         }
 
-        /// <summary>
-        /// publisher event for leaving screen
-        /// </summary>
-        public void LeaveEvent()
+        public delegate void LeaveEventHandler(object sender, LeaveEventArgs l);
+        
+        public void LeaveEventArgs()
         {
 
         }
