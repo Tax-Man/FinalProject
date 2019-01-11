@@ -19,6 +19,9 @@ namespace FinalProject40S
         public const int MAX_ALTITUDE = 3;
         public const int MODEL = 4;
 
+        //make a publisher event on a timer
+        //subscribe to aircraft's leave event
+
         /// <summary>
         /// First Aircraft in the path
         /// </summary>
@@ -445,7 +448,7 @@ namespace FinalProject40S
 
         public int FirstIndexOf(Data data)
         {
-            int index = 0;
+            int index = 0;  
             Aircraft current = Head;
             while (current != null)
             {

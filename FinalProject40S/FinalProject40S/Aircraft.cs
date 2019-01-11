@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -73,7 +72,7 @@ namespace FinalProject40S
         
         public void LeaveEventArgs()
         {
-
+            //publisher event
         }
 
     }
