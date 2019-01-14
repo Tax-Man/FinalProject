@@ -75,5 +75,10 @@ namespace FinalProject40S
             //publisher event
         }
 
+        public void Move()
+        {
+
+        }
+        
     }
 }

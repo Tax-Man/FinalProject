@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Timers;
 
 namespace FinalProject40S
 {
@@ -20,6 +21,13 @@ namespace FinalProject40S
         public const int MODEL = 4;
 
         //make a publisher event on a timer
+        
+
+        public void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            //get the current positions of all nodes and refresh the display
+        }
+        
         //subscribe to aircraft's leave event
 
         /// <summary>
@@ -56,6 +64,11 @@ namespace FinalProject40S
             get => End;
             set => End = value;
         }
+        public Timer Timer
+        {
+            get => Timer;
+            set => Timer = value;
+        }
         
         /// <summary>
         /// default constructor
@@ -63,6 +76,8 @@ namespace FinalProject40S
         public List()
         {
             Finalize();
+            Timer = new Timer(3000);
+            Timer.Elapsed += OnTimedEvent;
         }
 
         public List(PointF start, PointF end)
@@ -70,6 +85,8 @@ namespace FinalProject40S
             Finalize();
             Start = start;
             End = end;
+            Timer = new Timer(3000);
+            Timer.Elapsed += OnTimedEvent;
         }
 
         /// <summary>
