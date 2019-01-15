@@ -9,16 +9,7 @@ namespace FinalProject40S
     {
         public Aircraft next, previous;
         static Random _random = new Random();
-
-        public Aircraft(string ID, PointF pos, int maxSpeed, int maxAltitude, string model)
-        {
-            Data.ID = ID;
-            Data.MaxSpeed = maxSpeed;
-            Data.MaxAltitude = maxAltitude;
-            Data.Position = pos;
-            Data.Model = model;
-        }
-
+        
         public Aircraft(Data data)
         {
             Data = data;

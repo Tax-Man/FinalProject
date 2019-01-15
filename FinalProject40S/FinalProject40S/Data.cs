@@ -33,5 +33,12 @@ namespace FinalProject40S
             get => Model;
             set => Model = value;
         }
+
+        public int Angle
+        {
+            get => Angle;
+            set => Angle = value;
+        }
+
     }
 }

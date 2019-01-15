@@ -4,11 +4,6 @@ using System.Timers;
 
 namespace FinalProject40S
 {
-
-    /// <summary>
-    /// Abstract data type
-    /// </summary>
-    /// <typeparam name="string">The generic data type used in the class</typeparam>
     class List
     {
         private int length;
@@ -26,6 +21,8 @@ namespace FinalProject40S
         public void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             //get the current positions of all nodes and refresh the display
+
+            //fire an event in the nodes
         }
         
         //subscribe to aircraft's leave event
@@ -69,7 +66,12 @@ namespace FinalProject40S
             get => Timer;
             set => Timer = value;
         }
-        
+        public int Angle
+        {
+            get => Angle;
+            set => Angle = value;
+        }
+
         /// <summary>
         /// default constructor
         /// </summary>
