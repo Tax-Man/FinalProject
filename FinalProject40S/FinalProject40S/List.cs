@@ -15,7 +15,7 @@ namespace FinalProject40S
         public const int MAX_ALTITUDE = 3;
         public const int MODEL = 4;
 
-        //make a publisher event on a timer
+        //make a publisher event on a timer////////////////////////////////////////////////////////
         
 
         public void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -25,7 +25,7 @@ namespace FinalProject40S
             //fire an event in the nodes
         }
         
-        //subscribe to aircraft's leave event
+        //subscribe to aircraft's leave event///////////////////////////////////////////////////////////
 
         /// <summary>
         /// First Aircraft in the path
@@ -188,7 +188,7 @@ namespace FinalProject40S
             {
                 Head = Tail = aircraft;
             }
-            else
+            else //inject position data first////////////////////////////////////////////////////////
             {
                 aircraft.previous = Tail;
                 Tail.next = aircraft;

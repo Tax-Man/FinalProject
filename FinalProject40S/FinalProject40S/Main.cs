@@ -14,7 +14,7 @@ namespace FinalProject40S
         {
             //place random paths, planes, and airports
             //infiitely spawn planes as long as number currently on screen is less than XX
-
+            Aircraft test = new Aircraft(new Data());
 
         }
     }

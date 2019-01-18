@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject40S
 {
@@ -16,21 +14,21 @@ namespace FinalProject40S
             if (data.ID == null)
             {
                 string newID = "";
-                newID += GetLetter();
-                newID += GetLetter();
-                newID += GetLetter();
-                newID += GetLetter();
+                newID += GetLetter().ToUpper();
+                newID += GetLetter().ToUpper();
+                newID += GetLetter().ToUpper();
+                newID += GetLetter().ToUpper();
                 newID += GetNum();
                 newID += GetNum();
                 newID += GetNum();
             }
         }
 
-        public char GetLetter()
+        public string GetLetter()
         {
             int num = _random.Next(0, 26);
             char let = (char)('a' + num);
-            return let;
+            return let.ToString();
         }
 
         public int GetNum()
@@ -49,7 +47,7 @@ namespace FinalProject40S
             get => Data;
             set => Data = value;
         }
-
+        
         /// <summary>
         /// Wipes out all memory used by this object
         /// </summary>
@@ -63,7 +61,8 @@ namespace FinalProject40S
         
         public void LeaveEventArgs()
         {
-            //publisher event
+            //publisher event 
+            string thing = $" ";
         }
 
         public void Move()
