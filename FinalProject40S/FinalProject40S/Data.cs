@@ -51,9 +51,9 @@ namespace FinalProject40S
             set => ID = value;
         }
 
-        PointF Position;
+        public PointF Position;
 
-        PointF End;
+        public PointF End;
 
         double Distance;
 
