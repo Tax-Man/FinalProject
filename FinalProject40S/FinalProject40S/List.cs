@@ -14,19 +14,15 @@ namespace FinalProject40S
         public const int MAX_SPEED = 2;
         public const int MAX_ALTITUDE = 3;
         public const int MODEL = 4;
-
-        //make a publisher event on a timer////////////////////////////////////////////////////////
         
-
         public void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            //get the current positions of all nodes and refresh the display
-
-            //fire an event in the nodes
+            for (int i = 0; i < Size(); i++)
+            {
+                Get(i).Move();
+            }
         }
         
-        //subscribe to aircraft's leave event///////////////////////////////////////////////////////////
-
         /// <summary>
         /// First Aircraft in the path
         /// </summary>
@@ -51,12 +47,12 @@ namespace FinalProject40S
             get => Type;
             set => Type = value;
         }
-        public PointF Start
+        public Point Start
         {
             get => Start;
             set => Start = value;
         }
-        private PointF End
+        private Point End
         {
             get => End;
             set => End = value;
@@ -82,13 +78,14 @@ namespace FinalProject40S
             Timer.Elapsed += OnTimedEvent;
         }
 
-        public List(PointF start, PointF end)
+        public List(Point start, Point end)
         {
             Finalize();
             Start = start;
             End = end;
             Timer = new Timer(3000);
             Timer.Elapsed += OnTimedEvent;
+            Timer.Start();
         }
 
         /// <summary>
@@ -405,14 +402,14 @@ namespace FinalProject40S
                 case MAX_SPEED:
                     while (current != null)
                     {
-                        if (current.Data.MaxSpeed.Equals(data.MaxSpeed)) return true;
+                        if (current.Data.Speed.Equals(data.Speed)) return true;
                         current = current.next;
                     }
                     break;
                 case MAX_ALTITUDE:
                     while (current != null)
                     {
-                        if (current.Data.MaxAltitude.Equals(data.MaxAltitude)) return true;
+                        if (current.Data.Altitude.Equals(data.Altitude)) return true;
                         current = current.next;
                     }
                     break;

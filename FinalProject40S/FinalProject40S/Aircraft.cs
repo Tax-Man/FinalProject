@@ -36,7 +36,7 @@ namespace FinalProject40S
             return _random.Next(0, 10);
         }
 
-        public PointF Target
+        public Point Target
         {
             get => Target;
             set => Target = value;
@@ -56,19 +56,13 @@ namespace FinalProject40S
             Data = null;
             next = previous = null;
         }
-
-        public delegate void LeaveEventHandler(object sender, LeaveEventArgs l);
         
-        public void LeaveEventArgs()
-        {
-            //publisher event 
-            string thing = $" ";
-        }
-
         public void Move()
         {
+            Data.Position.X = Data.Position.X + Math.Cos(angle) * Data.Distance;
+            new_y = old_y + Math.Sin(angle) * distance;
 
         }
-        
+
     }
 }

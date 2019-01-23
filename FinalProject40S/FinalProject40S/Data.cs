@@ -6,44 +6,57 @@ namespace FinalProject40S
     public class Data
     {
 
-
-        public Data(string id, PointF position, int maxSpeed, int maxAlt, string model)
+        public Data(string id, Point position, int speed, int altitude, string model)
         {
             ID = id;
             Position = position;
-            MaxSpeed = maxSpeed;
-            MaxAltitude = maxAlt;
+            Speed = speed;
+            Altitude = altitude;
             Model = model;
-            if (Position != default(PointF))
+
+            PositionThing(position);
+        }
+
+        public void PositionThing(Point position)
+        {
+            Position = position;
+            if (Position != default(Point))
             {
                 //calculate 
                 Position.Y *= -1;
-                if (End.X == 0)
+                if (End.X < Position.X)
                 {
-                    //end is on left
+                    //end is to the left of position
+
+                    int x1 = Position.X;
+                    int y1 = Position.Y;
+
+                    int x2 = End.X;
+                    int y2 = End.Y;
+
+                    double distance = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
                 }
-                else if (End.X == 800)
+                else
                 {
-                    //end is on right
+                    //end is to the right of position
+
+                    int x1 = End.X;
+                    int y1 = End.Y;
+
+                    int x2 = Position.X;
+                    int y2 = Position.Y;
+
+                    double distance = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
+
+                    //if (End.Y > Position.Y) { Distance = Math.Sqrt(Math.Pow(End.Y - Position.Y, 2) + Math.Pow(End.X, 2)); } //a2 + b2 = c2
+                    //else { Distance = Math.Sqrt(Math.Pow(Position.Y - End.Y, 2) + Math.Pow(End.X, 2)); }
+                    //Angle = Math.Tan(Distance / End.Y - Position.Y);
                 }
-                else if (End.Y == 0)
-                {
-                    //end is at bottom
-                    if (End.X > Position.X) { Distance = Math.Sqrt(Math.Pow(Position.Y, 2) + Math.Pow(End.X - Position.X, 2)); }
-                    else { Distance = Math.Sqrt(Math.Pow(Position.Y, 2) + Math.Pow(Position.X - End.X, 2)); }
-                    Angle = Math.Tan(Distance / End.X - Position.X);
-                }
-                else if (End.Y == 800)
-                {
-                    if (End.X > Position.X) { Distance = Math.Sqrt(Math.Pow(End.X - Position.X, 2) + Math.Pow(End.Y, 2)); }
-                    else { Distance = Math.Sqrt(Math.Pow(Position.X - End.X, 2) + Math.Pow(End.Y, 2)); }
-                    Angle = Math.Tan(Distance / End.X - Position.X);
-                }
-                
+                Position.Y *= -1;
             }
         }
 
-        public Data(int maxSpeed, int maxAlt, string model) : this(null, default(PointF), maxSpeed, maxAlt, model) { }
+        public Data(int speed, int altitude, string model) : this(null, default(Point), speed, altitude, model) { }
 
         public string ID
         {
@@ -51,22 +64,21 @@ namespace FinalProject40S
             set => ID = value;
         }
 
-        public PointF Position;
+        public Point Position;
 
-        public PointF End;
+        public Point End;
+        public double Distance;
 
-        double Distance;
-
-        public int MaxSpeed
+        public int Speed
         {
-            get => MaxSpeed;
-            set => MaxSpeed = value;
+            get => Speed;
+            set => Speed = value;
         }
 
-        public int MaxAltitude
+        public int Altitude
         {
-            get => MaxAltitude;
-            set => MaxAltitude = value;
+            get => Altitude;
+            set => Altitude = value;
         }
 
         public string Model
