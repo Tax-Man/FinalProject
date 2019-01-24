@@ -16,7 +16,8 @@ namespace FinalProject40S
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            Globals.main = new Main();
+            Application.Run(Globals.main);
         }
     }
 }

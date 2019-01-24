@@ -14,15 +14,15 @@ namespace FinalProject40S
             Altitude = altitude;
             Model = model;
 
-            PositionThing(position);
+            Update(position);
         }
 
-        public void PositionThing(Point position)
+        public bool Update(Point position)
         {
             Position = position;
+            if (Position.X > 800 || Position.X < 0 || Position.Y > 800 || Position.Y < 0) return false;
             if (Position != default(Point))
             {
-                //calculate 
                 Position.Y *= -1;
                 if (End.X < Position.X)
                 {
@@ -34,7 +34,7 @@ namespace FinalProject40S
                     int x2 = End.X;
                     int y2 = End.Y;
 
-                    double distance = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
+                    Distance = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
                 }
                 else
                 {
@@ -46,14 +46,21 @@ namespace FinalProject40S
                     int x2 = Position.X;
                     int y2 = Position.Y;
 
-                    double distance = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
-
-                    //if (End.Y > Position.Y) { Distance = Math.Sqrt(Math.Pow(End.Y - Position.Y, 2) + Math.Pow(End.X, 2)); } //a2 + b2 = c2
-                    //else { Distance = Math.Sqrt(Math.Pow(Position.Y - End.Y, 2) + Math.Pow(End.X, 2)); }
-                    //Angle = Math.Tan(Distance / End.Y - Position.Y);
+                    Distance = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
                 }
                 Position.Y *= -1;
             }
+            else return false;
+
+            Position.X = (int)(Position.X + Math.Cos(Angle) * Speed);
+            Position.Y = (int)(Position.Y + Math.Sin(Angle) * Speed);
+
+            int delta_x = End.X - Position.X;
+            int delta_y = Position.Y - End.Y;
+
+            Angle = Math.Atan2(delta_y, delta_x); //angle in radians
+
+            return true;
         }
 
         public Data(int speed, int altitude, string model) : this(null, default(Point), speed, altitude, model) { }

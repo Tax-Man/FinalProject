@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace FinalProject40S
 {
@@ -7,10 +8,12 @@ namespace FinalProject40S
     {
         public Aircraft next, previous;
         static Random _random = new Random();
-        
+        public PictureBox icon;
+
         public Aircraft(Data data)
         {
             Data = data;
+            Data.Update(Data.Position);
             if (data.ID == null)
             {
                 string newID = "";
@@ -22,6 +25,9 @@ namespace FinalProject40S
                 newID += GetNum();
                 newID += GetNum();
             }
+            icon.Size = new Size(25, 25);
+            Globals.main.Controls.Add(icon);
+
         }
 
         public string GetLetter()
@@ -35,13 +41,7 @@ namespace FinalProject40S
         {
             return _random.Next(0, 10);
         }
-
-        public Point Target
-        {
-            get => Target;
-            set => Target = value;
-        }
-
+        
         public Data Data
         {
             get => Data;
@@ -59,10 +59,14 @@ namespace FinalProject40S
         
         public void Move()
         {
-            Data.Position.X = Data.Position.X + Math.Cos(angle) * Data.Distance;
-            new_y = old_y + Math.Sin(angle) * distance;
-
+            if (Data.Update(Data.Position))
+            {
+                icon.Location = Data.Position;
+            }
+            else
+            {
+                Finalize();
+            }
         }
-
     }
 }

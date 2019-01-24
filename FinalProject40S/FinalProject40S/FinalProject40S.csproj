@@ -49,6 +49,7 @@
     <Compile Include="Aircraft.cs" />
     <Compile Include="Airport.cs" />
     <Compile Include="Data.cs" />
+    <Compile Include="Globals.cs" />
     <Compile Include="LeaveEventArgs.cs" />
     <Compile Include="List.cs" />
     <Compile Include="Main.cs">

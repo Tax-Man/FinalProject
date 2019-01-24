@@ -13,9 +13,11 @@ namespace FinalProject40S
         private void Main_Load(object sender, EventArgs e)
         {
             //place random paths, planes, and airports
-            //infiitely spawn planes as long as number currently on screen is less than XX
-            Aircraft test = new Aircraft(new Data());
+            Data one = new Data(null, new System.Drawing.Point(1, 1), 100, 100, "aaa");
 
+            Aircraft test = new Aircraft(one);
+
+            List list = new List();
         }
     }
 }

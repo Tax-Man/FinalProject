@@ -88,6 +88,15 @@ namespace FinalProject40S
             Timer.Start();
         }
 
+        public void DefinePoints(Point start, Point end)
+        {
+            Start = start;
+            End = end;
+
+            DrawLine(Pen pen, Start, End);
+
+        }
+
         /// <summary>
         /// String representation of this object
         /// </summary>
