@@ -7,14 +7,14 @@ namespace FinalProject40S
     class List
     {
         private int length;
-        
+
         public const int NOT_FOUND = -1;
         public const int ID = 0;
         public const int POSITION = 1;
         public const int MAX_SPEED = 2;
         public const int MAX_ALTITUDE = 3;
         public const int MODEL = 4;
-        
+
         public void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             for (int i = 0; i < Size(); i++)
@@ -22,7 +22,7 @@ namespace FinalProject40S
                 Get(i).Move();
             }
         }
-        
+
         /// <summary>
         /// First Aircraft in the path
         /// </summary>
@@ -86,15 +86,6 @@ namespace FinalProject40S
             Timer = new Timer(3000);
             Timer.Elapsed += OnTimedEvent;
             Timer.Start();
-        }
-
-        public void DefinePoints(Point start, Point end)
-        {
-            Start = start;
-            End = end;
-
-            DrawLine(Pen pen, Start, End);
-
         }
 
         /// <summary>
@@ -179,7 +170,7 @@ namespace FinalProject40S
         {
             return length;
         }
-        
+
         /// <summary>
         /// Inserts data to the front (Head) of the list, for an (1) empty list, 
         /// (2) list of 1 Aircraft, (3) list of > 1 Aircraft
@@ -291,7 +282,6 @@ namespace FinalProject40S
             if (IsEmpty() || index < 0 || index >= length) return false;
             return true;
         }
-        
 
         protected Aircraft GetNode(int index)
         {
@@ -432,7 +422,7 @@ namespace FinalProject40S
             }
             return false;
         }
-        
+
         /// <summary>
         /// Inserts data as a new Aircraft after the passed index
         /// </summary>
@@ -473,7 +463,7 @@ namespace FinalProject40S
 
         public int FirstIndexOf(Data data)
         {
-            int index = 0;  
+            int index = 0;
             Aircraft current = Head;
             while (current != null)
             {
@@ -572,7 +562,7 @@ namespace FinalProject40S
                 Add(list.Get(i));
             }
         }
-        
+
         public List SubList(int from, int to)
         {
             if (!InRange(from)) return null;
@@ -607,15 +597,6 @@ namespace FinalProject40S
             return array;
         }
 
-        //public void FromArray(string[] array)
-        //{
-        //    Finalize();
-        //    foreach (string item in array)
-        //    {
-        //        Add(item);
-        //    }
-        //}
-
         public void FromLinkedList(List list)
         {
             Finalize();
@@ -624,21 +605,6 @@ namespace FinalProject40S
                 Add(list.Get(i));
             }
         }
-
-        //public ListAll(string[] array)
-        //{
-        //    FromArray(array);
-        //}
-        //public string[] ToArray(string[] array)
-        //{
-        //    array = (string[])Array.CreateInstance(array.GetType(), length);
-
-        //    for (int i = 0; i < length; i++)
-        //    {
-        //        array[i] = Get(i);
-        //    }
-        //    return array;
-        //}
-
+        
     }
 }

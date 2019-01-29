@@ -15,7 +15,7 @@ namespace FinalProject40S
             //place random paths, planes, and airports
             Data one = new Data(null, new System.Drawing.Point(1, 1), 100, 100, "aaa");
 
-            Aircraft test = new Aircraft(one);
+            //Aircraft test = new Aircraft(one);
 
             List list = new List();
         }
